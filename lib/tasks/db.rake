@@ -3,7 +3,7 @@ namespace :db do
   desc 'Dump the database from the RAILS_ENV environment database.'
   task :dump => [:environment] do
     with_config do |host, database, username, path|
-      system "pg_dump -i -h #{host} -U #{username} -d #{database} -F c -b -v -f #{path}"
+      system "pg_dump -h #{host} -U #{username} -d #{database} -F c -b -v -f #{path}"
     end
   end
 
@@ -15,7 +15,7 @@ namespace :db do
     end
 
     with_config do |host, database, username, path|
-      system "pg_restore -i -h #{host} --username #{username} --clean  -d #{database} -v #{path}"
+      system "pg_restore -h #{host} --username #{username} --clean  -d #{database} -v #{path}"
     end
   end
 
